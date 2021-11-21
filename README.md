@@ -1,3 +1,3 @@
 # components-visualization-tool
 
-## use [dxopal](https://github.com/yhara/dxopal)
+## Development with [dxopal](https://github.com/yhara/dxopal)
