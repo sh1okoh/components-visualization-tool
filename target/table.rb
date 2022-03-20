@@ -1,24 +1,67 @@
-# 毎日数個のコンテナ
-# 1つのコンテナには10銘柄を混載。全部で200種類
-# 倉庫係はコンテナを受け取りそのまま倉庫に保管し、積み荷票を受け取る
-#
-#
+require_relative 'stock_record'
+
+
 class Table
   def initialize
     @rep = Hash.new
   end
 
+  # x: StockRecord
   def inc(x)
     key = x.brand.key()
-    r = rep.get(key)
+    r = @rep.fetch(key)
     if r != null
-      v = sum(1, 2)
+      v = sum(r.qty, x.qty)
+      s = StockRecord.new(x.brand, v)
+      x = s
     end
+    @rep.store(key, x)
+  end
+
+  # todo: わからない
+  # def inc_all(table_array)
+  #   table_array.each do |table|
+  #
+  #   end
+  # end
+  def put(x)
+    key = x.brand.key()
+    r = @rep.fetch(key)
+    if !r.nil?
+      v = x.qty
+      s = StockRecord.new(x.brand, v)
+      x = s
+    end
+    @rep.store(key, x)
+  end
+
+  def dec(x)
+    f = true
+    key = x.brand.key()
+    r = @rep.fetch(key)
+    qty = diff(r.qry, x.qty)
+    if !r.nil?
+      if (qty > 0)
+        s = StockRecord.new(x.brand, qty)
+        x = s
+        @rep.store(key, x)
+      else
+        @rep.delete(key)
+      end
+    else
+      f = false
+    end
+    f
   end
 
   private
 
   def sum(x1, x2)
-    return x1 + x2
+    x1 + x2
   end
+
+  def diff(x1, x2)
+    x1 - x2
+  end
+
 end
