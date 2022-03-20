@@ -4,7 +4,21 @@
 #
 #
 class Table
-  def inc(x)
+  def initialize
+    @rep = Hash.new
+  end
 
+  def inc(x)
+    key = x.brand.key()
+    r = rep.get(key)
+    if r != null
+      v = sum(1, 2)
+    end
+  end
+
+  private
+
+  def sum(x1, x2)
+    return x1 + x2
   end
 end
