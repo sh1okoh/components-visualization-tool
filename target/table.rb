@@ -3,7 +3,7 @@ require_relative 'stock_record'
 
 class Table
   def initialize
-    @rep = Hash.new
+    @rep = Array.new(Hash.new)
   end
 
   # x: StockRecord
@@ -52,6 +52,23 @@ class Table
       f = false
     end
     f
+  end
+
+  def fetch(key)
+    r = @rep.fetch(key)
+    if (r != null)
+      return r.qty
+    else
+      return 0
+    end
+  end
+
+  def total_price
+    total = 0
+    @rep.each do |rep|
+      total += rep
+    end
+    total
   end
 
   private
