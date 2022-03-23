@@ -14,6 +14,18 @@ class Table
     @rep.join(',')
   end
 
+  def clear
+    @rep.clear
+  end
+
+  def elements
+    @rep.values
+  end
+
+  def is_empty
+    @rep.empty?
+  end
+
   # x: StockRecord
   def inc(x)
     key = x.brand.key()
@@ -24,9 +36,6 @@ class Table
       x = s
     end
     @rep.store(key, x)
-  end
-
-  def is_empty;
   end
 
   # todo: わからない
