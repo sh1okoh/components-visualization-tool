@@ -29,5 +29,12 @@ class Backorder
   def to_string
     r = "Backorder:"+@name+"\n"
     shorts_size = @shorts.size
+    r += "count"+shorts_size.to_s+"\n"
+    r += @shorts.to_string
+    r
+  end
+
+  def total_price
+    @shorts.total_price
   end
 end

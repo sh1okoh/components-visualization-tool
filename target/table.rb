@@ -86,7 +86,7 @@ class Table
   def total_price
     total = 0
     @rep.each do |rep|
-      total += rep
+      total += rep.values
     end
     total
   end
