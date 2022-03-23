@@ -6,6 +6,13 @@ class Table
     @rep = Array.new(Hash.new)
   end
 
+  def initialize_orverloaded(v)
+    @rep = Array.new(Hash.new)
+    v.values.each do |element|
+      put(element)
+    end
+  end
+
   def size
     @rep.size
   end
