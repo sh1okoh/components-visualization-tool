@@ -6,6 +6,14 @@ class Table
     @rep = Array.new(Hash.new)
   end
 
+  def size
+    @rep.size
+  end
+
+  def to_string
+    @rep.join(',')
+  end
+
   # x: StockRecord
   def inc(x)
     key = x.brand.key()
@@ -16,6 +24,9 @@ class Table
       x = s
     end
     @rep.store(key, x)
+  end
+
+  def is_empty;
   end
 
   # todo: わからない
