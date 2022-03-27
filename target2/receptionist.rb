@@ -10,7 +10,7 @@ class Receptionist
   end
 
   # NOTE: warehouse worker から受け取った積荷票を保管しておく
-  def store_packing_slip(packing_slip)
+  def receive_packing_slip(packing_slip)
     @packing_slip_store.append(packing_slip)
   end
 end
