@@ -1,3 +1,6 @@
+require_relative 'warehouse'
+require_relative 'packing_slip'
+
 class WarehouseWorker
   def initialize; end
 
@@ -5,8 +8,8 @@ class WarehouseWorker
   def store(container)
     warehouse = Warehouse.new
     warehouse.append(container)
-
+    packing_slip = PackingSlip.new
   end
 
-  # NOTE:
+  # NOTE
 end
