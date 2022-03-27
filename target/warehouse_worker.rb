@@ -17,7 +17,7 @@ class WarehouseWorker
   def update_storage_in(inv)
     invoice = inv
     @stored.clear()
-    elements = inv.elements;
+    elements = invoice.elements;
     elements.each do |element|
       @workat.store(element)
       @stored.put(element)

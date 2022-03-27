@@ -16,6 +16,10 @@ class ShopWorker
   # out: shipreq              出庫依頼書
   def ship_out(form)
     order_form = form
+    @ship_req.clear()
+    order_form.order.values.each do |r|
+      
+    end
 
   end
 end

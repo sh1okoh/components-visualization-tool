@@ -1,4 +1,4 @@
 class Container
-  def initialize;
+  def initialize()
   end
 end
