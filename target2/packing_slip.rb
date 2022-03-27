@@ -11,5 +11,6 @@ class PackingSlip
   end
 
   def make_alcohol_info(container)
+
   end
 end
