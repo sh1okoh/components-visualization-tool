@@ -12,6 +12,4 @@ class WarehouseWorker
     packing_slip = PackingSlip.new(container, Time.zone.now)
     Receptionist.receive_packing_slip(packing_slip)
   end
-
-  # NOTE
 end
