@@ -11,6 +11,5 @@ class PackingSlip
   end
 
   def make_alcohol_info(container)
-    alcohol_info = Array.new(Hash.new)
   end
 end

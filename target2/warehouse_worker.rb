@@ -8,7 +8,8 @@ class WarehouseWorker
   def store(container)
     warehouse = Warehouse.new
     warehouse.append(container)
-    packing_slip = PackingSlip.new
+    packing_slip = PackingSlip.new(container, Time.zone.now)
+    Receptionist.receive
   end
 
   # NOTE
