@@ -1,9 +1,9 @@
 class Container
   def initialize
-    @container = Array.new
+    @alcohol_store = Array.new
   end
 
   def append(alcohol)
-    @container.append(alcohol)
+    @alcohol_store.append(alcohol)
   end
 end
