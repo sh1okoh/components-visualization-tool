@@ -5,7 +5,7 @@ class PackingSlip
     # - コンテナ番号
     # - 搬入年月日、日時
     # - 内蔵品名, 数量
-    #   - [ { "内蔵品名": 数量 } ]
+    #   - { "内蔵品名": 数量 }
     @container_number = container.number
     @delivery_date = time_zone_now
     @alcohol_info = make_alcohol_info(container)
