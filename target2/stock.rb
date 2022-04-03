@@ -12,8 +12,8 @@ class Stock
   end
 
   def to_string
-    @table.keys.each do |key|
-      pp "#{key}: #{@table[key]}個"
+    @table.each do |stock_record|
+      pp "#{stock_record.brand}: #{stock_record.quantity}個"
     end
   end
 end

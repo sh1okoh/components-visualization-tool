@@ -52,6 +52,7 @@ class WarehouseService
       stock_records.each do |stock_record|
         stock.table.append(stock_record)
       end
+      stock.to_string
       stock
     end
   end
