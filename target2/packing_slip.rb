@@ -16,8 +16,8 @@ class PackingSlip
   private
 
   def make_alcohol_info(container)
-    alcohol_store = container.alcohol_store
-    info = alcohol_store.group_by(&:itself).map { |key, value| [key, value.count] }.to_h
+    alcohol_table = container.alcohol_table
+    info = alcohol_table.rep.group_by(&:itself).map { |key, value| [key, value.count] }.to_h
     info
   end
 end

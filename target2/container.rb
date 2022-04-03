@@ -1,7 +1,7 @@
 require_relative 'table'
 
 class Container
-  attr_accessor :alcohol_store, :number
+  attr_accessor :alcohol_table, :number
 
   def initialize
     @alcohol_table = Table.new

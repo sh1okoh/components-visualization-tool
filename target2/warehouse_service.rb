@@ -43,7 +43,7 @@ class WarehouseService
     def make_container
       alcohol = Alcohol.new('a')
       container = Container.new
-      container.alcohol_store.append(alcohol)
+      container.alcohol_table.append(alcohol)
       container
     end
 
