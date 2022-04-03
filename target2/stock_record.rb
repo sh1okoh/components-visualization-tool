@@ -1,4 +1,6 @@
 class StockRecord
+  attr_accessor :brand, :quantity
+
   def initialize(brand, quantity)
     @brand = brand
     @quantity = quantity

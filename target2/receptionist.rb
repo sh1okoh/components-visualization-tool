@@ -14,6 +14,7 @@ class Receptionist
   end
 
   def request_delivery
+    # とりあえずあてで
     {
       product_name: 'product name',
       quantity: 2,
@@ -22,14 +23,19 @@ class Receptionist
   end
 
   # params: { brand: quantity }
-  def receive_delivery_request(alcohol)
+  def receive_delivery_request(order, stock)
     # todo: 在庫不足かどうかの判定
-    is_inventory_shortage(alcohol)
+    res = is_inventory_shortage(order, stock)
+    res
   end
 
   private
 
-  def is_inventory_shortage(alcohol)
+  def is_inventory_shortage(order, stock)
+    stock.instance_variable_get(:@stock).each do |element|
+      if element[[:brand]]
 
+      end
+    end
   end
 end
