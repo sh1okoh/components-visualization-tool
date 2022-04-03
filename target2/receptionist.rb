@@ -23,19 +23,22 @@ class Receptionist
   end
 
   # params: { brand: quantity }
-  def receive_delivery_request(order, stock)
+  def receive_delivery_request(order, prepared_stock)
     # todo: 在庫不足かどうかの判定
-    res = is_inventory_shortage(order, stock)
-    res
+    is_inventory_shortage(order, prepared_stock)
   end
 
   private
 
-  def is_inventory_shortage(order, stock)
-    stock.instance_variable_get(:@stock).each do |element|
-      if element[[:brand]]
-
+  def is_inventory_shortage(order, prepared_stock)
+    # NOTE: 初期化
+    calc_result = 0
+    prepared_stock.table.each do |stock_record|
+      if element[order[:brand]]
+        calc_result = stock_record.quantity - order[:quantity]
       end
     end
+
+    calc_result >= 0
   end
 end

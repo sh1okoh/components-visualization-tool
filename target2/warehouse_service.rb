@@ -11,7 +11,7 @@ class WarehouseService
     # 倉庫係がコンテナを受け取る
     container = make_container
     # 在庫の準備
-    stock = make_stock
+    prepared_stock = make_stock
     # 倉庫係がコンテナを倉庫に保管する
     WarehouseWorker.new.store(container)
     packing_slip = PackingSlip.new(container, Time.zone.now)
@@ -24,7 +24,7 @@ class WarehouseService
     # - 在庫がないか、不足の場合にはその旨を依頼者に電話連絡し、同時に在庫不足リストに記入する
     # - また空になる予定のコンテナを倉庫係に知らせることになっている
     order = { brand: 'a', quantity: 10 }
-    is_in_stock = Receptionist.new.receive_delivery_request(order, stock)
+    is_in_stock = Receptionist.new.receive_delivery_request(order, prepared_stock)
     if (is_in_stock)
 
     else

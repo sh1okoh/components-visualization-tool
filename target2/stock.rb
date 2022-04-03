@@ -1,19 +1,19 @@
 require_relative 'stock_record'
 
 class Stock
-  attr_accessor :stock
+  attr_accessor :@table
 
   def initialize
-    @stock = Array.new
+    @table = Array.new
   end
 
   def stock(stock_record)
-    @stock.append(stock_record)
+    @table.append(stock_record)
   end
 
   def to_string
-    @stock.keys.each do |key|
-      pp "#{key}: #{@stock[key]}個"
+    @table.keys.each do |key|
+      pp "#{key}: #{@table[key]}個"
     end
   end
 end
