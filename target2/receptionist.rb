@@ -1,8 +1,9 @@
 require_relative 'warehouse_worker'
+require_relative 'table'
 
 class Receptionist
   def initialize
-    @packing_slip_store = Array.new
+    @packing_slip_store = Table.new
   end
 
   # NOTE: warehouse worker から受け取った積荷票を保管しておく
@@ -11,7 +12,7 @@ class Receptionist
   end
 
   def request_delivery
-    # とりあえずあてで
+    # TODO: とりあえずあてで
     {
       product_name: 'product name',
       quantity: 2,

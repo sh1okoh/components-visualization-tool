@@ -1,7 +1,9 @@
+require_relative 'table'
+
 class Warehouse
   attr_accessor :table
 
   def initialize
-    @table = Array.new
+    @table = Table.new
   end
 end

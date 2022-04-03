@@ -1,10 +1,11 @@
 require_relative 'stock_record'
+require_relative 'table'
 
 class Stock
   attr_accessor :table
 
   def initialize
-    @table = Array.new
+    @table = Table.new
   end
 
   def stock(stock_record)
@@ -12,7 +13,7 @@ class Stock
   end
 
   def to_string
-    @table.each do |stock_record|
+    @table.rep.each do |stock_record|
       pp "#{stock_record.brand}: #{stock_record.quantity}個"
     end
   end

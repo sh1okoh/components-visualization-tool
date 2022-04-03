@@ -1,3 +1,5 @@
+require_relative 'table'
+
 class Container
   attr_accessor :alcohol_store, :number
 
@@ -11,6 +13,6 @@ class Container
   end
 
   def append(alcohol)
-    @alcohol_table.rep.append(alcohol)
+    @alcohol_table.append(alcohol)
   end
 end
