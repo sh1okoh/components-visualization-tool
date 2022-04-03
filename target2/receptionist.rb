@@ -22,14 +22,14 @@ class Receptionist
   end
 
   # params: { brand: quantity }
-  def receive_delivery_request(brand)
+  def receive_delivery_request(alcohol)
     # todo: 在庫不足かどうかの判定
-    is_inventory_shortage(brand)
+    is_inventory_shortage(alcohol)
   end
 
   private
 
-  def is_inventory_shortage(brand)
+  def is_inventory_shortage(alcohol)
 
   end
 end
