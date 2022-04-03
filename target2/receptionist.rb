@@ -20,4 +20,16 @@ class Receptionist
       destination_name: 'destination name'
     }
   end
+
+  # params: { brand: quantity }
+  def receive_delivery_request(brand)
+    # todo: 在庫不足かどうかの判定
+    is_inventory_shortage(brand)
+  end
+
+  private
+
+  def is_inventory_shortage(brand)
+
+  end
 end
