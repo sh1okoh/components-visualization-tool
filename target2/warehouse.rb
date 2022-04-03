@@ -1,5 +1,7 @@
 class Warehouse
+  attr_accessor :table
+
   def initialize
-    @warehouse = Array.new
+    @table = Array.new
   end
 end

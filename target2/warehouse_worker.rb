@@ -8,7 +8,7 @@ class WarehouseWorker
 
   # NOTE: コンテナを倉庫に保管
   def store(container)
-    @warehouse.append(container)
+    @warehouse.table.append(container)
   end
 
   def ship(built_in_product)

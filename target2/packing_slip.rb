@@ -1,5 +1,7 @@
 # NOTE: 積荷票
 class PackingSlip
+  attr_accessor :container_number, :delivery_date, :alcohol_info
+
   def initialize(container, time_zone_now)
     # NOTE:
     # - コンテナ番号

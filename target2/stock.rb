@@ -1,7 +1,7 @@
 require_relative 'stock_record'
 
 class Stock
-  attr_accessor :@table
+  attr_accessor :table
 
   def initialize
     @table = Array.new

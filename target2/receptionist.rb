@@ -34,7 +34,7 @@ class Receptionist
     # NOTE: 初期化
     calc_result = 0
     prepared_stock.table.each do |stock_record|
-      if element[order[:brand]]
+      if stock_record.brand == order[:brand]
         calc_result = stock_record.quantity - order[:quantity]
       end
     end
