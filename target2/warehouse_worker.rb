@@ -12,6 +12,5 @@ class WarehouseWorker
   end
 
   def ship(built_in_product)
-    
   end
 end

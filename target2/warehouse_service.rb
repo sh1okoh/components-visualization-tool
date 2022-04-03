@@ -1,9 +1,15 @@
+require_relative 'warehouse_worker'
+require_relative 'packing_slip'
+require_relative 'receptionist'
+require_relative 'alcohol'
+require_relative 'container'
+
 class WarehouseService
   def run
     # 倉庫係がコンテナを受け取る
     container = make_container
     # 倉庫係がコンテナを倉庫に保管する
-    WarehouseWorker.store(container)
+    WarehouseWorker.new.store(container)
     packing_slip = PackingSlip.new(container, Time.zone.now)
     # 倉庫係が積荷票を受付係へ手渡す
     Receptionist.new.receive_packing_slip(packing_slip)
