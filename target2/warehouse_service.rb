@@ -24,12 +24,16 @@ class WarehouseService
       # - 出庫依頼は出庫依頼票もしくは電話、1件1銘柄
       # - 在庫がないか、不足の場合にはその旨を依頼者に電話連絡し、同時に在庫不足リストに記入する
       # - また空になる予定のコンテナを倉庫係に知らせることになっている
-      order = { brand: 'a', quantity: 10 }
-      is_in_stock = Receptionist.new.receive_delivery_request(order, prepared_stock)
+      order = { brand: 'a', quantity: 10, destination_name: 'ほげ太郎' }
+      is_in_stock, stock = Receptionist.new.receive_delivery_request(order, prepared_stock)
       if (is_in_stock)
-
-        pp "在庫がある場合の処理"
+        # TODO: また空になる予定のコンテナを倉庫係に知らせることになっている
+        # TODO: 注文された商品の在庫が0の場合、在庫がなくなる旨を伝える処理の追加
+        # TODO:
       else
+        Receptionist.contact_to_requester
+        Receptionist.append_inventory_shortage(InventoryShortage.new(order[:name], order[:destination_name], 10))
+        # TODO: 在庫がないか、不足の場合にはその旨を依頼者に電話連絡し、同時に在庫不足リストに記入する
         pp "在庫がありません"
       end
     end

@@ -25,21 +25,30 @@ class Receptionist
     is_inventory_shortage(order, prepared_stock)
   end
 
+  class << self
+    def contact_to_requester; end
+
+    def append_inventory_shortage(inventory_shortage)
+      inventory_shortage_table = Table.new
+      inventory_shortage_table.rep.append(inventory_shortage)
+    end
+  end
+
   private
 
   def is_inventory_shortage(order, prepared_stock)
     # NOTE: 初期化
     calc_result = 0
-    prepared_stock.table.each do |stock_record|
+    stock = prepared_stock
+    stock.table.each do |stock_record|
       if stock_record.brand == order[:brand]
         calc_result = stock_record.quantity - order[:quantity]
         stock_record.quantity = calc_result
       end
     end
 
-    pp "============在庫があるかどうかの計算==========="
-    prepared_stock.to_string
-
-    calc_result >= 0
+    pp "============注文後を差し引いたときの在庫==========="
+    stock.to_string
+    [calc_result >= 0, stock]
   end
 end

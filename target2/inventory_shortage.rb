@@ -1,11 +1,9 @@
 class InventoryShortage
-  attr_accessor :table
+  attr_accessor :brand, :destination_name, :quantity
 
-  def initialize
-    @table = Array.new
-  end
-
-  def append(param)
-    @table.append(param)
+  def initialize(brand, destination_name, quantity)
+    @brand = brand
+    @destination_name = destination_name
+    @quantity = quantity
   end
 end
