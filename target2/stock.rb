@@ -6,6 +6,12 @@ class Stock
   end
 
   def stock(stock_record)
-    @stock.append()
+    @stock.append(stock_record)
+  end
+
+  def to_string
+    @stock.keys.each do |key|
+      pp "#{key}: #{@stock[key]}個"
+    end
   end
 end
