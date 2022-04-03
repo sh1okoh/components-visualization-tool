@@ -1,6 +1,5 @@
 class Warehouse
   def initialize
-    @warehouse = Array.new()
-    @warehouse
+    @warehouse = Array.new
   end
 end

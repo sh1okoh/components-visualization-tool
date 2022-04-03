@@ -9,7 +9,9 @@ class WarehouseWorker
   # NOTE: コンテナを倉庫に保管
   def store(container)
     @warehouse.append(container)
-    packing_slip = PackingSlip.new(container, Time.zone.now)
-    Receptionist.receive_packing_slip(packing_slip)
+  end
+
+  def ship(built_in_product)
+    
   end
 end
