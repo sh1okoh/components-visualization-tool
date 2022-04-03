@@ -31,7 +31,7 @@ class Receptionist
 
     def append_inventory_shortage(inventory_shortage)
       inventory_shortage_table = Table.new
-      inventory_shortage_table.rep.append(inventory_shortage)
+      inventory_shortage_table.append(inventory_shortage)
     end
   end
 
