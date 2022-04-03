@@ -3,4 +3,8 @@ class StockRecord
     @brand = brand
     @quantity = quantity
   end
+
+  def to_string
+    pp "#{@brand} : #{@quantity}"
+  end
 end
