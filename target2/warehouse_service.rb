@@ -57,6 +57,7 @@ class WarehouseService
       stock_records.each do |stock_record|
         stock.table.append(stock_record)
       end
+
       pp "============初期の在庫==========="
       stock.to_string
       stock
