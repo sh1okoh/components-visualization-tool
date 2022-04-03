@@ -28,6 +28,7 @@ class WarehouseService
       is_in_stock = Receptionist.new.receive_delivery_request(order, prepared_stock)
       if (is_in_stock)
 
+        pp "在庫がある場合の処理"
       else
         pp "在庫がありません"
       end
@@ -52,6 +53,7 @@ class WarehouseService
       stock_records.each do |stock_record|
         stock.table.append(stock_record)
       end
+      pp "============初期の在庫==========="
       stock.to_string
       stock
     end

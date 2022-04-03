@@ -33,8 +33,12 @@ class Receptionist
     prepared_stock.table.each do |stock_record|
       if stock_record.brand == order[:brand]
         calc_result = stock_record.quantity - order[:quantity]
+        stock_record.quantity = calc_result
       end
     end
+
+    pp "============在庫があるかどうかの計算==========="
+    prepared_stock.to_string
 
     calc_result >= 0
   end

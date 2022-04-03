@@ -1,9 +1,11 @@
 class InventoryShortage
+  attr_accessor :table
+
   def initialize
-    @store = Array.new
+    @table = Array.new
   end
 
-  def put(param)
-    @store.append(param)
+  def append(param)
+    @table.append(param)
   end
 end
