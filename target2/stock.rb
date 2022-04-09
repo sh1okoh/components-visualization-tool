@@ -18,13 +18,14 @@ class Stock
     end
   end
 
-  def is_inventory_shortage(order)
-    p 'order'
-    p 'order'
-    p 'order'
-    p 'order'
-    p 'order'
+  def is_inventory_shortage(ordered_brand)
+    result = false
+    @table.rep.each do |stock_record|
+      if stock_record.brand == ordered_brand
+        result = stock_record.quantity < 0
+      end
+    end
 
-    p order
+    return result
   end
 end
