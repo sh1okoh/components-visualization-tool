@@ -30,7 +30,8 @@ class WarehouseService
       if (is_inventory_shortage)
 
       else
-        Receptionist.new.calculate_inventory(order, prepared_stock)
+        inventory_shortage = InventoryShortage.new(order[:brand], )
+        Receptionist.write_inventory_shortage
       end
     end
 
