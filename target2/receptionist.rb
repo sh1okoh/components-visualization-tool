@@ -18,30 +18,19 @@ class Receptionist
     @inventory_shortage_store.append(inventory_shortage)
   end
 
-  def request_delivery
-    # TODO: とりあえずあてで
-    {
-      product_name: 'product name',
-      quantity: 2,
-      destination_name: 'destination name'
-    }
-  end
-
-  # params: { brand: quantity }
-  def receive_delivery_request(order, prepared_stock)
-    # todo: 在庫不足かどうかの判定
-    is_inventory_shortage(order, prepared_stock)
+  def call_requester
+    # TODO: 依頼者に電話
+    p "依頼者に電話しました"
   end
 
   def calculate_inventory(order, prepared_stock)
     stock = prepared_stock
     stock.table.rep.each do |stock_record|
-      if stock_record.brand == order[:brand]
-        calc_result = stock_record.quantity - order[:quantity]
+      if stock_record.brand == order.product_name
+        calc_result = stock_record.quantity - order.quantity
         stock_record.quantity = calc_result
       end
     end
-
 
     pp "============注文後を差し引いたときの在庫==========="
     stock.to_string

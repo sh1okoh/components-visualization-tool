@@ -5,6 +5,7 @@ require_relative 'alcohol'
 require_relative 'container'
 require_relative 'stock_record'
 require_relative 'stock'
+require_relative 'requester'
 
 class WarehouseService
   class << self
@@ -26,13 +27,13 @@ class WarehouseService
       # - 出庫依頼は出庫依頼票もしくは電話、1件1銘柄
       # - 在庫がないか、不足の場合にはその旨を依頼者に電話連絡し、同時に在庫不足リストに記入する
       # - また空になる予定のコンテナを倉庫係に知らせることになっている
-      order = { brand: 'a', quantity: 20, destination_name: 'ほげ太郎' }
+      order = make_order('a', 20, '会社')
       stock = receptionist.calculate_inventory(order, prepared_stock)
       is_inventory_shortage, required_quantity = stock.is_inventory_shortage(order[:brand])
       if (is_inventory_shortage)
-
-      else
         receptionist.write_inventory_shortage(order[:brand], order[:destination_name], required_quantity)
+        receptionist.call_requester
+      else
 
       end
     end
@@ -60,6 +61,10 @@ class WarehouseService
       pp "============初期の在庫==========="
       stock.to_string
       stock
+    end
+
+    def make_order(product_name, quantity, destination_name)
+      Requester.order(product_name, quantity, destination_name)
     end
   end
 end

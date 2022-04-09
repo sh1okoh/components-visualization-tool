@@ -1,3 +1,4 @@
+# 配達指示
 class DeliveryInstruction
   attr_reader :order_number
 
