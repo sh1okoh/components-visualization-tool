@@ -5,5 +5,10 @@ class InventoryShortage
     @brand = brand
     @destination_name = destination_name
     @quantity = quantity
+    @table = Table.new
+  end
+
+  def create
+    @table.append(InventoryShortage)
   end
 end

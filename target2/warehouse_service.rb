@@ -28,9 +28,9 @@ class WarehouseService
       stock = Receptionist.new.calculate_inventory(order, prepared_stock)
       is_inventory_shortage = stock.is_inventory_shortage(order[:brand])
       if (is_inventory_shortage)
-        p "true"
+
       else
-        p "false"
+        Receptionist.new.calculate_inventory(order, prepared_stock)
       end
     end
 

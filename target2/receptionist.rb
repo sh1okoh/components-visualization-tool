@@ -1,5 +1,6 @@
 require_relative 'warehouse_worker'
 require_relative 'table'
+require_relative 'inventory_shortage'
 
 class Receptionist
   def initialize
@@ -48,7 +49,9 @@ class Receptionist
       inventory_shortage_table = Table.new
       inventory_shortage_table.append(inventory_shortage)
     end
-  end
 
-  private
+    def write_inventory_shortage
+      InventoryShortage.create()
+    end
+  end
 end
