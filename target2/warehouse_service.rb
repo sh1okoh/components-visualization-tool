@@ -27,7 +27,7 @@ class WarehouseService
       # - 出庫依頼は出庫依頼票もしくは電話、1件1銘柄
       # - 在庫がないか、不足の場合にはその旨を依頼者に電話連絡し、同時に在庫不足リストに記入する
       # - また空になる予定のコンテナを倉庫係に知らせることになっている
-      order = make_order('a', 20, '会社')
+      order = make_order
       stock = receptionist.calculate_inventory(order, prepared_stock)
       is_inventory_shortage, required_quantity = stock.is_inventory_shortage(order[:brand])
       if (is_inventory_shortage)
@@ -63,8 +63,15 @@ class WarehouseService
       stock
     end
 
-    def make_order(product_name, quantity, destination_name)
-      Requester.order(product_name, quantity, destination_name)
+    def make_order
+      requester_a = Requester.new('request_a', 'company_a')
+      requester_b = Requester.new('requester_b', 'company_b')
+      requester_c = Requester.new('requester_c', 'company_c')
+      [
+        requester_a.order('a', 20, 'company_b'),
+        requester_b.order('b', 30, 'company_c'),
+        requester_c.order('c', 40, 'company_a'),
+      ]
     end
   end
 end
