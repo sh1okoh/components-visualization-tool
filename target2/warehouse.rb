@@ -6,4 +6,8 @@ class Warehouse
   def initialize
     @table = Table.new
   end
+
+  def append(container)
+    @table.append(container)
+  end
 end
