@@ -14,7 +14,8 @@ class WarehouseService
       container = make_container
       # 在庫の準備
       # 倉庫係がコンテナを倉庫に保管する
-      WarehouseWorker.new.store(container)
+      warehouse_worker= WarehouseWorker.new
+      warehouse_worker.store(container)
       packing_slip = PackingSlip.new(container, Time.now)
       # 倉庫係が積荷票を受付係へ手渡す
       receptionist = Receptionist.new
@@ -32,7 +33,7 @@ class WarehouseService
 
       else
         receptionist.write_inventory_shortage(order[:brand], order[:destination_name], required_quantity)
-        
+
       end
     end
 
@@ -62,9 +63,5 @@ class WarehouseService
     end
   end
 end
-
-# 次やること
-# - warehouse serviceのrunメソッドにおいて足りない部分の修正
-# - バグ修正
 
 WarehouseService.run
