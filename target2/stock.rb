@@ -20,13 +20,14 @@ class Stock
 
   def is_inventory_shortage(ordered_brand)
     result = false
-    
+    required_quantity = 0
     @table.rep.each do |stock_record|
       if stock_record.brand == ordered_brand
         result = stock_record.quantity < 0
+        required_quantity = stock_record.quantity
       end
     end
 
-    return [result,
+    return [result, required_quantity]
   end
 end

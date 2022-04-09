@@ -17,7 +17,8 @@ class WarehouseService
       WarehouseWorker.new.store(container)
       packing_slip = PackingSlip.new(container, Time.now)
       # 倉庫係が積荷票を受付係へ手渡す
-      Receptionist.new.receive_packing_slip(packing_slip)
+      receptionist = Receptionist.new
+      receptionist.receive_packing_slip(packing_slip)
       # ==================================
       # 受付係の出庫指示によって内蔵品を出庫する
       # - 受付係は毎日n*10件の出庫依頼を受け、倉庫係へ出庫指示書を出す
@@ -25,13 +26,13 @@ class WarehouseService
       # - 在庫がないか、不足の場合にはその旨を依頼者に電話連絡し、同時に在庫不足リストに記入する
       # - また空になる予定のコンテナを倉庫係に知らせることになっている
       order = { brand: 'a', quantity: 20, destination_name: 'ほげ太郎' }
-      stock = Receptionist.new.calculate_inventory(order, prepared_stock)
-      is_inventory_shortage = stock.is_inventory_shortage(order[:brand])
+      stock = receptionist.calculate_inventory(order, prepared_stock)
+      is_inventory_shortage, required_quantity = stock.is_inventory_shortage(order[:brand])
       if (is_inventory_shortage)
 
       else
-        inventory_shortage = InventoryShortage.new(order[:brand], )
-        Receptionist.write_inventory_shortage
+        receptionist.write_inventory_shortage(order[:brand], order[:destination_name], required_quantity)
+        
       end
     end
 

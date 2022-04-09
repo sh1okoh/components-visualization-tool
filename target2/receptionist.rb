@@ -5,11 +5,17 @@ require_relative 'inventory_shortage'
 class Receptionist
   def initialize
     @packing_slip_store = Table.new
+    @inventory_shortage_store = Table.new
   end
 
   # NOTE: warehouse worker から受け取った積荷票を保管しておく
   def receive_packing_slip(packing_slip)
     @packing_slip_store.append(packing_slip)
+  end
+
+  def write_inventory_shortage(brand, destination_name, required_quantity)
+    inventory_shortage = InventoryShortage.new(brand, destination_name, required_quantity)
+    @inventory_shortage_store.append(inventory_shortage)
   end
 
   def request_delivery
@@ -44,14 +50,5 @@ class Receptionist
 
   class << self
     def contact_to_requester; end
-
-    def append_inventory_shortage(inventory_shortage)
-      inventory_shortage_table = Table.new
-      inventory_shortage_table.append(inventory_shortage)
-    end
-
-    def write_inventory_shortage
-      InventoryShortage.create()
-    end
   end
 end
