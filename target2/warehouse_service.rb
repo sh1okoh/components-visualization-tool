@@ -32,7 +32,7 @@ class WarehouseService
       is_inventory_shortage, required_quantity = stock.is_inventory_shortage(order[:brand])
       if (is_inventory_shortage)
         receptionist.write_inventory_shortage(order[:brand], order[:destination_name], required_quantity)
-        receptionist.call_requester
+        receptionist.call_requester()
       else
 
       end
@@ -66,9 +66,9 @@ class WarehouseService
       requester_b = Requester.new('requester_b', 'company_b')
       requester_c = Requester.new('requester_c', 'company_c')
       [
-        requester_a.order('a', 20, 'company_b'),
-        requester_b.order('b', 30, 'company_c'),
-        requester_c.order('c', 40, 'company_a'),
+        { requester: requester_a, order: requester_a.order('a', 20, 'company_b') },
+        { requester: requester_b, order: requester_b.order('b', 30, 'company_c') },
+        { requester: requester_c, order: requester_c.order('c', 40, 'company_a') },
       ]
     end
   end

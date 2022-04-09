@@ -24,6 +24,7 @@ class Receptionist
   end
 
   def calculate_inventory(order, prepared_stock)
+    # TODO: 注文が複数だった場合どうするか
     stock = prepared_stock
     stock.table.rep.each do |stock_record|
       if stock_record.brand == order.product_name
