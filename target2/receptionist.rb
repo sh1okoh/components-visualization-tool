@@ -18,9 +18,9 @@ class Receptionist
     @inventory_shortage_store.append(inventory_shortage)
   end
 
-  def call_requester
+  def call_requester(requester)
     # TODO: 依頼者に電話
-    p "依頼者に電話しました"
+    requester.receive_a_call
   end
 
   def calculate_inventory(order, prepared_stock)

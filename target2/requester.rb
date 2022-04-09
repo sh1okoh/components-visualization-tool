@@ -12,4 +12,8 @@ class Requester
   def order(product_name, quantity, destination_name)
     Order.new(product_name, quantity, destination_name)
   end
+
+  def receive_a_call
+    
+  end
 end

@@ -58,8 +58,6 @@ class WarehouseService
         stock.append(stock_record)
       end
 
-      pp "============初期の在庫==========="
-      stock.to_string
       stock
     end
 
