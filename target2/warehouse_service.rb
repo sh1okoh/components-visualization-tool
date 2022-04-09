@@ -25,17 +25,18 @@ class WarehouseService
       # - 在庫がないか、不足の場合にはその旨を依頼者に電話連絡し、同時に在庫不足リストに記入する
       # - また空になる予定のコンテナを倉庫係に知らせることになっている
       order = { brand: 'a', quantity: 10, destination_name: 'ほげ太郎' }
-      is_in_stock, stock = Receptionist.new.receive_delivery_request(order, prepared_stock)
-      if (is_in_stock)
-        # TODO: また空になる予定のコンテナを倉庫係に知らせることになっている
-        # TODO: 注文された商品の在庫が0の場合、在庫がなくなる旨を伝える処理の追加
-        # TODO:
-      else
-        Receptionist.contact_to_requester
-        Receptionist.append_inventory_shortage(InventoryShortage.new(order[:name], order[:destination_name], 10))
-        # TODO: 在庫がないか、不足の場合にはその旨を依頼者に電話連絡し、同時に在庫不足リストに記入する
-        pp "在庫がありません"
-      end
+      stock = Receptionist.new.calculate_inventory(order, prepared_stock)
+      is_inventory_shortage = stock.is_inventory_shortage(order)
+      # if ()
+      #   # TODO: また空になる予定のコンテナを倉庫係に知らせることになっている
+      #   # TODO: 注文された商品の在庫が0の場合、在庫がなくなる旨を伝える処理の追加
+      #   # TODO:
+      # else
+      #   Receptionist.contact_to_requester
+      #   Receptionist.append_inventory_shortage(InventoryShortage.new(order[:name], order[:destination_name], 10))
+      #   # TODO: 在庫がないか、不足の場合にはその旨を依頼者に電話連絡し、同時に在庫不足リストに記入する
+      #   pp "在庫がありません"
+      # end
     end
 
     private
@@ -55,7 +56,7 @@ class WarehouseService
       stock_records = [stock_record1, stock_record2, stock_record3]
       stock = Stock.new
       stock_records.each do |stock_record|
-        stock.table.append(stock_record)
+        stock.append(stock_record)
       end
 
       pp "============初期の在庫==========="
@@ -64,5 +65,9 @@ class WarehouseService
     end
   end
 end
+
+# 次やること
+# - warehouse serviceのrunメソッドにおいて足りない部分の修正
+# - バグ修正
 
 WarehouseService.run

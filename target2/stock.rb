@@ -8,7 +8,7 @@ class Stock
     @table = Table.new
   end
 
-  def stock(stock_record)
+  def append(stock_record)
     @table.append(stock_record)
   end
 
@@ -16,5 +16,15 @@ class Stock
     @table.rep.each do |stock_record|
       pp "#{stock_record.brand}: #{stock_record.quantity}個"
     end
+  end
+
+  def is_inventory_shortage(order)
+    p 'order'
+    p 'order'
+    p 'order'
+    p 'order'
+    p 'order'
+
+    p order
   end
 end
