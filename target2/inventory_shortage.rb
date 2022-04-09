@@ -9,6 +9,6 @@ class InventoryShortage
   end
 
   def create
-    @table.append(InventoryShortage)
+
   end
 end
