@@ -20,25 +20,31 @@ class Receptionist
 
   def call_requester(requester)
     # TODO: 依頼者に電話
-    requester.receive_a_call
+    requester.receive_a_call()
   end
 
-  def calculate_inventory(order, prepared_stock)
-    # TODO: 注文が複数だった場合どうするか
+  def calculate_inventory(orders, prepared_stock)
     stock = prepared_stock
+    converted_orders = convert_orders(orders)
+    response = []
     stock.table.rep.each do |stock_record|
-      if stock_record.brand == order.product_name
-        calc_result = stock_record.quantity - order.quantity
-        stock_record.quantity = calc_result
-      end
+      next if converted_orders[stock_record.brand].nil?
+      ordered_quantity = converted_orders[stock_record.brand][:order].quantity
+      calc_result = stock_record.quantity - ordered_quantity
+      stock_record.quantity = calc_result
+      response.append(stock_record, converted_orders[stock_record.brand])
+    end
+    response
+  end
+
+  private
+
+  def convert_orders(orders)
+    order_arr = []
+    orders.each do |order|
+      order_arr.append([order[:order].product_name, order])
     end
 
-    pp "============注文後を差し引いたときの在庫==========="
-    stock.to_string
-    stock
-  end
-
-  class << self
-    def contact_to_requester; end
+    order_arr.to_h
   end
 end
