@@ -1,9 +1,6 @@
 class ShopWorker
   def initialize(backorder)
     @backorder = backorder
-    p "初期値"
-    p @backorder.to_string
-
     @ship_req = Table.new
     @stored = Table.new
     @shipped = Table.new
