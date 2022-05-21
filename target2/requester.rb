@@ -15,5 +15,6 @@ class Requester
   end
 
   def receive_a_call
+
   end
 end

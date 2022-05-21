@@ -14,6 +14,12 @@ class Receptionist
   end
 
   def write_inventory_shortage(brand, destination_name, required_quantity)
+    p "brand"
+    p brand
+    p "destination_name"
+    p destination_name
+    p "required_quantity"
+    p required_quantity
     inventory_shortage = InventoryShortage.new(brand, destination_name, required_quantity)
     @inventory_shortage_store.append(inventory_shortage)
   end
