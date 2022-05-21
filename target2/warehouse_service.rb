@@ -28,11 +28,11 @@ class WarehouseService
       # - 在庫がないか、不足の場合にはその旨を依頼者に電話連絡し、同時に在庫不足リストに記入する
       # - また空になる予定のコンテナを倉庫係に知らせることになっている
       stock_record, ordered = receptionist.calculate_inventory(order, prepared_stock)
-      p "stock_record"
-      p stock_record
-
-      p "ordered"
-      p ordered
+      if (stock_record.quantity.negative?)
+        receptionist.call_requester(ordered)
+      else
+        # receptionist.write_inventory_shortage()
+      end
     end
 
     private

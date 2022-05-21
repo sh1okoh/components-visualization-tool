@@ -14,7 +14,7 @@ class Requester
     Order.new(product_name, quantity, destination_name)
   end
 
-  def receive_a_call
-
+  def receive_a_call(order)
+    puts '在庫がない旨を了解しました'
   end
 end
