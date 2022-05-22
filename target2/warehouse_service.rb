@@ -34,8 +34,6 @@ class WarehouseService
         return
       elsif(stock_record.quantity == 0)
         @receptionist.inform_of_warehouse_worker(@warehouse_worker)
-      else
-
       end
     end
 
