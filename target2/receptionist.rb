@@ -23,6 +23,10 @@ class Receptionist
     requester.receive_a_call(ordered)
   end
 
+  def inform_of_warehouse_worker(warehouse_worker)
+    puts "在庫なくなるやで"
+  end
+
   def calculate_inventory(orders, prepared_stock)
     stock = prepared_stock
     converted_orders = convert_orders(orders)

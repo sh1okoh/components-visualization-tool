@@ -31,6 +31,9 @@ class WarehouseService
       if (stock_record.quantity.negative?)
         @receptionist.call_requester(ordered)
         @receptionist.write_inventory_shortage(ordered[:order], stock_record)
+        return
+      elsif(stock_record.quantity == 0)
+        @receptionist.inform_of_warehouse_worker(@warehouse_worker)
       else
 
       end
