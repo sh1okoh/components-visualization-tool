@@ -30,8 +30,8 @@ class WarehouseService
       stock_record, ordered = receptionist.calculate_inventory(order, prepared_stock)
       if (stock_record.quantity.negative?)
         receptionist.call_requester(ordered)
+        receptionist.write_inventory_shortage(ordered[:order], stock_record)
       else
-        # receptionist.write_inventory_shortage()
       end
     end
 

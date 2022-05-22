@@ -13,14 +13,8 @@ class Receptionist
     @packing_slip_store.append(packing_slip)
   end
 
-  def write_inventory_shortage(brand, destination_name, required_quantity)
-    p "brand"
-    p brand
-    p "destination_name"
-    p destination_name
-    p "required_quantity"
-    p required_quantity
-    inventory_shortage = InventoryShortage.new(brand, destination_name, required_quantity)
+  def write_inventory_shortage(order, stock_record)
+    inventory_shortage = InventoryShortage.new(order.product_name, order.destination_name,stock_record.quantity)
     @inventory_shortage_store.append(inventory_shortage)
   end
 
