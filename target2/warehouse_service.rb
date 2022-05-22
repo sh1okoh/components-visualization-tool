@@ -16,22 +16,23 @@ class WarehouseService
       order = make_order
       # 在庫の準備
       # 倉庫係がコンテナを倉庫に保管する
-      warehouse_worker= WarehouseWorker.new
-      warehouse_worker.store(container)
+      @warehouse_worker= WarehouseWorker.new
+      @warehouse_worker.store(container)
       # 倉庫係が積荷票を受付係へ手渡す
-      packing_slip = PackingSlip.new(container, Time.now)
-      receptionist = Receptionist.new
-      receptionist.receive_packing_slip(packing_slip)
+      @packing_slip = PackingSlip.new(container, Time.now)
+      @receptionist = Receptionist.new
+      @receptionist.receive_packing_slip(@packing_slip)
       # 受付係の出庫指示によって内蔵品を出庫する
       # - 受付係は毎日n*10件の出庫依頼を受け、倉庫係へ出庫指示書を出す
       # - 出庫依頼は出庫依頼票もしくは電話、1件1銘柄
       # - 在庫がないか、不足の場合にはその旨を依頼者に電話連絡し、同時に在庫不足リストに記入する
       # - また空になる予定のコンテナを倉庫係に知らせることになっている
-      stock_record, ordered = receptionist.calculate_inventory(order, prepared_stock)
+      stock_record, ordered = @receptionist.calculate_inventory(order, prepared_stock)
       if (stock_record.quantity.negative?)
-        receptionist.call_requester(ordered)
-        receptionist.write_inventory_shortage(ordered[:order], stock_record)
+        @receptionist.call_requester(ordered)
+        @receptionist.write_inventory_shortage(ordered[:order], stock_record)
       else
+
       end
     end
 
