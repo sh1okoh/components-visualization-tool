@@ -1,14 +1,12 @@
 class StockRecord
-  def initialize(brand, q)
+  attr_accessor :brand, :quantity
+
+  def initialize(brand, quantity)
     @brand = brand
-    @qty = q
+    @quantity = quantity
   end
 
   def to_string
-    "brand:" + @brand.to_string + ",qty" + @qty.to_s+""
-  end
-
-  def price
-    @brand.price * @qty
+    pp "#{@brand} : #{@quantity}"
   end
 end
